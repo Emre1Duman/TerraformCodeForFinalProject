@@ -13,6 +13,6 @@ variable "resource_location" {
 variable "vnet_address_space" {
     description = "Address space for the virtual network"
     type = list(string)
-    default = [ "value" ]
+    default = [ "10.0.0.0/16" ]
   
 }
