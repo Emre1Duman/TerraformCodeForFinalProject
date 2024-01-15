@@ -27,18 +27,18 @@ resource "azurerm_virtual_network" "aks_vnet" {
     resource_group_name = azurerm_resource_group.resource1.name
 }
 
-resource "azurerm_subnet" "aks_sub" {
+resource "azurerm_subnet" "control_plane_sub" {
     name = "control-plane-subnet"
     resource_group_name = azurerm_resource_group.resource1.name
     virtual_network_name = azurerm_virtual_network.aks_vnet.name
-    address_prefixes = [ "" ]     
+    address_prefixes = [ "10.0.1.0/24" ]     
 }
 
 resource "azurerm_subnet" "worker_node_sub" {
     name = "worker-node-subnet"
     resource_group_name = azurerm_resource_group.resource1.name
     virtual_network_name = azurerm_virtual_network.aks_vnet.name
-    address_prefixes = [ "" ]     
+    address_prefixes = [ "10.0.2.0/24" ]     
 }
 
 resource "azurerm_network_security_group" "net-group1" {
@@ -54,27 +54,22 @@ resource "azurerm_network_security_group" "net-group1" {
         protocol = "Tcp"
         source_port_range = "*"
         destination_port_range = "*"
-        source_address_prefix = "*"
+        source_address_prefix = ""
         destination_address_prefix = "*"
         }
     
     security_rule {
-    name = "ssh-rule"
-    priority = 101
-    direction = "Inbound"
-    access = "Allow"
-    protocol = "Tcp"
-    source_port_range = "*"
-    destination_port_range = "*"
-    source_address_prefix = "*"
-    destination_address_prefix = "*"
+      name = "ssh-rule"
+      priority = 101
+      direction = "Inbound"
+      access = "Allow"
+      protocol = "Tcp"
+      source_port_range = "*"
+      destination_port_range = "*"
+      source_address_prefix = ""
+      destination_address_prefix = "*"
     }
 
-
-
-    
-    
-  
 }
 
 
