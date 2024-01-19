@@ -1,21 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.0.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-  client_id       = 
-  client_secret   = 
-  subscription_id = 
-  tenant_id       = 
-}
-
-
 resource "azurerm_resource_group" "aks_cluster_rg" {
     name = "aks_cluster_rg"
     location = "UK South"
