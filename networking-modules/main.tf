@@ -1,20 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.0.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-  client_id       = ""
-  client_secret   = ""
-  subscription_id = ""
-  tenant_id       = ""
-}
-
 resource "azurerm_resource_group" "resource1" {
     name = var.resource_group_name
     location = var.resource_location
@@ -54,7 +37,7 @@ resource "azurerm_network_security_group" "net-group1" {
         protocol = "Tcp"
         source_port_range = "*"
         destination_port_range = "*"
-        source_address_prefix = ""
+        source_address_prefix = "2.100.68.176"
         destination_address_prefix = "*"
         }
     
@@ -66,7 +49,7 @@ resource "azurerm_network_security_group" "net-group1" {
       protocol = "Tcp"
       source_port_range = "*"
       destination_port_range = "*"
-      source_address_prefix = ""
+      source_address_prefix = "2.100.68.176"
       destination_address_prefix = "*"
     }
 
